@@ -12,6 +12,14 @@ data/metadata/
 !data/chroma_db/.gitkeep
 
 # ============================================
+# AMBIENTE VIRTUAL (CRÍTICO)
+# ============================================
+.medico/
+.venv/
+venv/
+env/
+
+# ============================================
 # AMBIENTE E CONFIGURAÇÕES
 # ============================================
 # Variáveis de ambiente (contém chaves de API!)
