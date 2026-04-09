@@ -1,0 +1,111 @@
+# ============================================
+# DADOS DO PROJETO (IMPORTANTE!)
+# ============================================
+# Essas pastas contêm PDFs e o banco vetorial
+# São arquivos grandes e NÃO devem ir pro GitHub
+data/raw_pdfs/
+data/processed/
+data/chroma_db/
+data/metadata/
+!data/raw_pdfs/.gitkeep
+!data/processed/.gitkeep
+!data/chroma_db/.gitkeep
+
+# ============================================
+# AMBIENTE E CONFIGURAÇÕES
+# ============================================
+# Variáveis de ambiente (contém chaves de API!)
+.env
+.env.local
+.env.*.local
+
+# ============================================
+# PYTHON
+# ============================================
+# Arquivos compilados
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+
+# Arquivos de teste e cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Distribuições
+build/
+dist/
+*.egg-info/
+*.egg
+
+# ============================================
+# EDITORES E IDE
+# ============================================
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-*
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ============================================
+# SISTEMAS OPERACIONAIS
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+*~
+
+# ============================================
+# LOGS E TEMPORÁRIOS
+# ============================================
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# ============================================
+# DOCKER
+# ============================================
+*.pid
+docker-compose.override.yml
+
+# ============================================
+# ARQUIVOS DE SECRETS (segurança)
+# ============================================
+*.pem
+*.key
+*.p12
+secrets.yml
+secrets.yaml
