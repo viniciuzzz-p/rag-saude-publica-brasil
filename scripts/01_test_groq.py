@@ -19,12 +19,12 @@ if not api_key:
 
 try:
     llm = ChatGroq(
-        model="llama-3.31-70b-versatile",
+        model="llama-3.3-70b-versatile",
         temperature=0.1, 
     )
     pergunta = "Qual é o protocolo básico de hidratação para suspeita de dengue em adultos? Responda em apenas um parágrafo."
     print(f"Pergunta: {pergunta}")
-    print("Aguardando resposta do Llama 3.1 (via Groq)...")
+    print("Aguardando resposta do Llama 3.3 (via Groq)...")
 
     mensagem = [HumanMessage(content= pergunta)]
     resposta = llm.invoke(mensagem)
