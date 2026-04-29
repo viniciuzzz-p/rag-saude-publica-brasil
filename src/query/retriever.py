@@ -35,8 +35,11 @@ chroma_db = Chroma(
 
 
 #configurando o banco local para buscar 10 textos 
-buscador_base = chroma_db.as_retriever(search_kwargs={"k": 10})
-
+# Pescamos 50 chunks, filtramos os 30 mais diversos, e mandamos para a Cohere
+buscador_base = chroma_db.as_retriever(
+    search_type="mmr",
+    search_kwargs={"k": 30, "fetch_k": 50}
+)
 #instanciando o Cohere Rerank usando um modelo multiidiomas
 #vai ler os 10 textos e retornas os 3 mais relevantes
 compressor = CohereRerank(
@@ -86,7 +89,7 @@ def buscar_resposta_medica(pergunta_usuario, historico_mensagens):
     
 
 
-        resultados = buscador_inteligente.invoke(pergunta_usuario)
+        resultados = buscador_inteligente.invoke(pergunta_reescrita)
 
         textos_extraidos = []
 

@@ -14,6 +14,49 @@ st.set_page_config(page_title="Assistente Médico RAG", page_icon="🩺", layout
 st.title("🩺 Assistente Médico IA")
 st.markdown("Faça perguntas sobre protocolos médicos e tratamentos baseados no Ministério da Saúde.")
 st.divider()
+with st.sidebar:
+    st.image("https://cdn-icons-png.flaticon.com/512/3004/3004451.png", width=100) 
+    st.title("🩺 Assistente RAG")
+    
+    st.warning("⚠️ **Aviso Legal:** Este é um assistente de IA baseado em protocolos do Ministério da Saúde. O conteúdo gerado tem caráter puramente informativo e acadêmico. Nunca substitua uma consulta médica profissional.")
+    
+    st.markdown("---")
+    st.markdown("### 📚 Protocolos Disponíveis")
+    
+    # Mostra os mais buscados ou populares abertos
+    st.markdown("- Dengue\n- Obesidade\n- TDAH\n- HPV\n- COVID-19")
+    
+    # O Expander mágico que vai abrir o resto da lista!
+    with st.expander("Ver todas as condições cadastradas"):
+        st.markdown("""
+        - Alzheimer
+        - Artrite Reumatoide
+        - Blinatumomabe
+        - Câncer de Mama
+        - Depressão
+        - Diabetes (e Gestacional)
+        - Dislipidemia
+        - Doença Celíaca
+        - Doença de Chagas
+        - Doença de Crohn
+        - Dor Crônica
+        - Epilepsia
+        - Esquizofrenia
+        - Hanseníase
+        - Infarto
+        - Influenza
+        - Lúpus Eritematoso Sistêmico
+        - Osteoporose
+        - Parkinson
+        - Raquitismo
+        - Tabagismo
+        """)
+    
+    st.markdown("---")
+    # Botão para limpar a memória do bot
+    if st.button("🗑️ Limpar Histórico do Chat"):
+        st.session_state.messages = []
+        st.rerun()
 
 if "mensagens" not in st.session_state:
     st.session_state.mensagens = [

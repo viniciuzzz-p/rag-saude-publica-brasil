@@ -8,31 +8,40 @@ from langchain_community.vectorstores import Chroma
 os.environ["ANONYMIZED_TELEMETRY"] = "False"
 
 ROOT_DIR = Path(__file__).parent.parent.parent
-PDF_PATH = ROOT_DIR/ "data"/ "raw_pdfs"/ "dengue.pdf"
-CHROMA_DIR = ROOT_DIR/  "data"/ "chroma_db"
+PASTA_BASE = ROOT_DIR / "data" / "raw_pdfs"
+CHROMA_DIR = ROOT_DIR / "data" / "chroma_db"
 
+print("🚀 Iniciando pipeline de ingestão em lote...")
+
+todos_documentos = []
 print("iniciando pipeline de ingestão...")
 
-print(f"Lendo o documento: {PDF_PATH.name}")
+for arquivo_pdf in PASTA_BASE.rglob("*.pdf"):
+    nome_doenca = arquivo_pdf.parent.name 
+    
+    print(f"Lendo o documento: {nome_doenca.upper()} -> {arquivo_pdf.name}")
+    
+    try:
+        loader = PyMuPDFLoader(str(arquivo_pdf))
+        documentos_extraidos = loader.load()
+        
+        for doc in documentos_extraidos:
+            doc.metadata["doenca"] = nome_doenca
+            
+        todos_documentos.extend(documentos_extraidos)
+        
+    except Exception as e:
+        print(f"❌ Erro ao ler o PDF {arquivo_pdf.name}: {e}")
+        continue
 
-try:
-    loader = PyMuPDFLoader(str(PDF_PATH))
-    documentos = loader.load()
-    print(f"documento carregado com sucesso.\ntamanho total: {len(documentos)}")
-except Exception as e:
-    print(f" Erro ao ler o PDF: {e}")
-    exit(1)
-
-
-#iniciando o processo de Chunking do PDF
-
+print(f"\n✅ Leitura concluída! Total de páginas carregadas no sistema: {len(todos_documentos)}")
 text_spliter = RecursiveCharacterTextSplitter(
     chunk_size = 800,
     chunk_overlap = 100,
     separators=["\n\n", "\n", ".", " ", ""]
 )
 
-chunks = text_spliter.split_documents(documentos)
+chunks = text_spliter.split_documents(todos_documentos)
 print(f"✅ Texto dividido em {len(chunks)} chunks.")
 
 # 4. Gerar Embeddings e Salvar no ChromaDB

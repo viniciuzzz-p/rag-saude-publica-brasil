@@ -5,11 +5,10 @@
 # São arquivos grandes e NÃO devem ir pro GitHub
 data/raw_pdfs/
 data/processed/
-data/chroma_db/
 data/metadata/
 !data/raw_pdfs/.gitkeep
 !data/processed/.gitkeep
-!data/chroma_db/.gitkeep
+
 
 # ============================================
 # AMBIENTE VIRTUAL (CRÍTICO)
